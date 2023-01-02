@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        tools:context=".MainActivity">
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/ad_unit_id"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_color_plate"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_200"
+            android:backgroundTint="@color/purple_200"
+            android:src="@drawable/ic_color_plate"
+            app:layout_constraintEnd_toStartOf="@+id/iv_premium"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/adView" />
+
+        <TextView
+            android:id="@+id/tv_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Color"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="@+id/iv_color_plate"
+            app:layout_constraintStart_toStartOf="@id/iv_color_plate"
+            app:layout_constraintTop_toBottomOf="@id/iv_color_plate"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/txt_size"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/iv_songs"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_200"
+            android:backgroundTint="@color/purple_200"
+            android:src="@drawable/ic_premium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_premium"
+            app:layout_constraintTop_toBottomOf="@id/adView" />
+
+        <TextView
+            android:id="@+id/tv_songs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Songs"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="@+id/iv_premium"
+            app:layout_constraintStart_toStartOf="@+id/iv_premium"
+            app:layout_constraintTop_toBottomOf="@id/iv_songs"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/txt_size"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/iv_premium"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_200"
+            android:backgroundTint="@color/purple_200"
+            android:src="@drawable/ic_music"
+            app:layout_constraintEnd_toStartOf="@+id/iv_songs"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_color_plate"
+            app:layout_constraintTop_toBottomOf="@id/adView" />
+
+        <TextView
+            android:id="@+id/tv_premium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Premium"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="@+id/iv_songs"
+            app:layout_constraintStart_toStartOf="@+id/iv_songs"
+            app:layout_constraintTop_toBottomOf="@id/iv_premium"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/txt_size"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/iv_color1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/purple_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_color" />
+
+        <ImageView
+            android:id="@+id/iv_color2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/purple_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_color1" />
+
+        <ImageView
+            android:id="@+id/iv_color3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/purple_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_color2" />
+
+        <ImageView
+            android:id="@+id/iv_color4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/purple_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_color3" />
+
+        <ImageView
+            android:id="@+id/iv_color5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/purple_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_color4" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/iv_color5"
+            android:layout_marginTop="20dp"
+
+            />
+
+        <ImageView
+            android:id="@+id/iv_rate"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_200"
+            android:backgroundTint="@color/purple_200"
+            android:src="@drawable/ic_rate"
+            app:layout_constraintEnd_toStartOf="@+id/iv_exit"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_rate" />
+
+        <TextView
+            android:id="@+id/tv_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rate"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="@+id/iv_rate"
+            app:layout_constraintStart_toStartOf="@id/iv_rate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/txt_size"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_200"
+            android:backgroundTint="@color/purple_200"
+            android:src="@drawable/ic_exit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_exit"
+            app:layout_constraintBottom_toTopOf="@id/tv_share" />
+
+        <TextView
+            android:id="@+id/tv_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_exit"
+            app:layout_constraintStart_toStartOf="@+id/iv_exit"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/txt_size"
+            android:textStyle="bold"
+            />
+
+        <ImageView
+            android:id="@+id/iv_exit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_200"
+            android:backgroundTint="@color/purple_200"
+            android:src="@drawable/ic_music"
+            app:layout_constraintEnd_toStartOf="@+id/iv_songs"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_color_plate"
+            app:layout_constraintBottom_toTopOf="@id/tv_exit" />
+
+        <TextView
+            android:id="@+id/tv_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exit"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_share"
+            app:layout_constraintStart_toStartOf="@+id/iv_share"
+            android:textColor="@color/txt_color"
+            android:textSize="@dimen/txt_size"
+            android:textStyle="bold"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
