@@ -104,11 +104,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.iv_songs ->{
-                startActivity(Intent(this@MainActivity, SongListActivity::class.java))
+                // TODO: code here for premimum
             }
 
             R.id.iv_premium ->{
-
+                // TODO: code here for songs
+                startActivity(Intent(this@MainActivity, SongListActivity::class.java))
             }
 
             R.id.iv_rate ->{
