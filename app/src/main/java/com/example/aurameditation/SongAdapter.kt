@@ -23,31 +23,22 @@ class SongAdapter(private val list: Array<String>, private val context: Context)
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-//        mediaPlayer = MediaPlayer()
         holder.layoutItemSongBinding.tvSongTitle.text = list[position]
 
         holder.layoutItemSongBinding.ivPlayMusic.setOnClickListener(View.OnClickListener {
-//            if (mediaPlayer.isPlaying){
-//                mediaPlayer.stop()
-//            }else{
-//                mediaPlayer = MediaPlayer()
-//                mediaPlayer.start()
-//            }
-            val intent = Intent(context, BackgroundSoundService::class.java)
-            intent.putExtra("song", holder.layoutItemSongBinding.tvSongTitle.text)
-            context.startForegroundService(intent)
-            holder.layoutItemSongBinding.ivPlayMusic.setImageDrawable(context.getDrawable(R.drawable.ic_pause))
-            holder.layoutItemSongBinding.ivPlayMusic.visibility = View.GONE
-            holder.layoutItemSongBinding.ivStop.visibility = View.VISIBLE
+//            val intent = Intent(context, BackgroundSoundService::class.java)
+//            intent.putExtra("song", holder.layoutItemSongBinding.tvSongTitle.text)
+//            context.startForegroundService(intent)
+//            holder.layoutItemSongBinding.ivPlayMusic.setImageDrawable(context.getDrawable(R.drawable.ic_pause))
+//            holder.layoutItemSongBinding.ivPlayMusic.visibility = View.GONE
+//            holder.layoutItemSongBinding.ivStop.visibility = View.VISIBLE
         })
 
         holder.layoutItemSongBinding.ivStop.setOnClickListener(View.OnClickListener {
-//            mediaPlayer.stop()
-//            mediaPlayer.release()
-            context.stopService(Intent(context, BackgroundSoundService::class.java))
-            holder.layoutItemSongBinding.ivPlayMusic.setImageDrawable(context.getDrawable(R.drawable.ic_play))
-            holder.layoutItemSongBinding.ivStop.visibility = View.GONE
-            holder.layoutItemSongBinding.ivPlayMusic.visibility = View.VISIBLE
+//            context.stopService(Intent(context, BackgroundSoundService::class.java))
+//            holder.layoutItemSongBinding.ivPlayMusic.setImageDrawable(context.getDrawable(R.drawable.ic_play))
+//            holder.layoutItemSongBinding.ivStop.visibility = View.GONE
+//            holder.layoutItemSongBinding.ivPlayMusic.visibility = View.VISIBLE
         })
     }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.example.aurameditation.databinding.ActivitySongListBinding
 
 class SongListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySongListBinding
+    private lateinit var musicList: ArrayList<Music>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_song_list)
@@ -19,23 +21,18 @@ class SongListActivity : AppCompatActivity() {
 
         val assetManager = this.assets
         val stringAray: Array<String> = assetManager.list("mp3") as Array<String>
-        Log.d("TAG", "onCreate: "+stringAray)
+        musicList = ArrayList<Music>()
+        for (title in stringAray){
+            musicList.add(Music(title))
+        }
 
-        val adapter = SongAdapter(stringAray, this)
+        val adapter = MusicAdapter(this, musicList)
         binding.recyclerView.adapter = adapter
 
     }
 
-    private fun getListOfFilesFromAssetFolder(path: String, context: Context): ArrayList<String>{
-        val listOfAudioFiles = ArrayList<String>()
-        context.assets.list(path)?.forEach { file ->
-            val innerFiles = getListOfFilesFromAssetFolder("$path/#file", context)
-            if (innerFiles.isNotEmpty()){
-                listOfAudioFiles.addAll(innerFiles)
-            }else{
-                Toast.makeText(this, "Empty folder", Toast.LENGTH_SHORT).show()
-            }
-        }
-        return listOfAudioFiles
+    override fun onResume() {
+        super.onResume()
+        if(PlayerActivity.musicService != null) binding.nowPlaying.visibility = View.VISIBLE
     }
 }
