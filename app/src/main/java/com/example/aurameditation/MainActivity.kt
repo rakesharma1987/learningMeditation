@@ -10,6 +10,7 @@ import android.provider.Settings.Global.getInt
 import android.provider.Settings.Secure.getInt
 import android.provider.Settings.SettingNotFoundException
 import android.provider.Settings.System.SCREEN_BRIGHTNESS
+import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -21,6 +22,8 @@ import androidx.databinding.DataBindingUtil
 import com.example.aurameditation.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
+import yuku.ambilwarna.AmbilWarnaDialog
+import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
 import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -100,7 +103,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
         when(view!!.id){
             R.id.iv_color_plate ->{
+                val dialog = AmbilWarnaDialog(this, 255, object:OnAmbilWarnaListener{
+                    override fun onCancel(dialog: AmbilWarnaDialog?) {
 
+                    }
+
+                    override fun onOk(dialog: AmbilWarnaDialog?, color: Int) {
+                        binding.ivColor1.setBackgroundColor(color)
+                    }
+
+                })
+                dialog.show()
             }
 
             R.id.iv_songs ->{
