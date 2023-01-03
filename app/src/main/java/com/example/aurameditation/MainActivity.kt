@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.iv_songs ->{
                 // TODO: code here for premimum
+                startActivity(Intent(this@MainActivity, PremiumActivity::class.java))
             }
 
             R.id.iv_premium ->{
@@ -117,11 +118,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.iv_share ->{
-
+                this.finish()
             }
 
             R.id.iv_exit ->{
-                this.finish()
+
             }
         }
     }

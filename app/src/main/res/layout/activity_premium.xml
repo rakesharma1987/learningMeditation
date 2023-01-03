@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PremiumActivity"
+    android:background="#FF3A243A"
+    app:layout_constraintVertical_weight="1"
+    android:padding="10dp">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/card_view_premium"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="#FF3A243A"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="1dp"
+        app:strokeColor="#978B26"
+        app:layout_constraintHeight_percent="0.5">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rl1">
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/civ_premium"
+            android:src="@drawable/ic_premium_yellow"
+            android:backgroundTintMode="@color/purple_200"
+            android:layout_margin="20dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#978B26"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_premium_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="31dp"
+                android:layout_toRightOf="@id/civ_premium"
+                android:text="Premium(Lifetime)"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size"
+                android:textStyle="bold" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_grp_by_premium"
+                android:layout_below="@+id/tv_premium_title"
+                android:layout_marginTop="20dp">
+
+                <RadioButton
+                    android:id="@+id/rb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="100dp"
+                    android:button="@drawable/ic_radiobutton_"
+                    android:buttonTint="#978E49"
+                    android:paddingLeft="5dp"
+                    android:text="Remove Ads"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <RadioButton
+                    android:id="@+id/rb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="100dp"
+                    android:button="@drawable/ic_radiobutton_"
+                    android:buttonTint="#978E49"
+                    android:paddingLeft="5dp"
+                    android:text="Access All relaxing sound"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <RadioButton
+                    android:id="@+id/rb3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="100dp"
+                    android:button="@drawable/ic_radiobutton_"
+                    android:buttonTint="#978E49"
+                    android:paddingLeft="5dp"
+                    android:text="Unlock full profile feature"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </RadioGroup>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_buy_premium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="Buy Premium"
+                android:layout_below="@id/radio_grp_by_premium"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/card_view_remove_ads"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="#FF3A243A"
+        app:layout_constraintTop_toBottomOf="@id/card_view_premium"
+        app:strokeWidth="1dp"
+        app:strokeColor="#978B26"
+        app:layout_constraintHeight_percent="0.3">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rl11">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/civ_remove_ad"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTintMode="@color/purple_200"
+                android:src="@drawable/ic_add_block"
+                app:civ_border_color="#978B26"
+                app:civ_border_width="1dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_remove_ads"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="31dp"
+                android:layout_toRightOf="@id/civ_remove_ad"
+                android:text="Remove Ads"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size"
+                android:textStyle="bold" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_grp_by_remove_ads"
+                android:layout_below="@+id/tv_remove_ads"
+                android:layout_marginTop="20dp">
+
+                <RadioButton
+                    android:id="@+id/rb11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="100dp"
+                    android:button="@drawable/ic_radiobutton_"
+                    android:buttonTint="#978E49"
+                    android:paddingLeft="5dp"
+                    android:text="Enjoy ad-free experience"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </RadioGroup>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_remove_ad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="Remove Ads"
+                android:layout_below="@id/radio_grp_by_remove_ads"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
