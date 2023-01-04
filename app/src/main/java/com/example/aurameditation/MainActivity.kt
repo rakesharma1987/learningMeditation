@@ -2,6 +2,7 @@ package com.example.aurameditation
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,7 +30,7 @@ import java.util.jar.Manifest
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
     private var brightness: Int = 0
-
+    private var count: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +83,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.ivRate.setOnClickListener(this)
         binding.ivShare.setOnClickListener(this)
         binding.ivExit.setOnClickListener(this)
+
+        binding.ivColor1.setOnClickListener(this)
+        binding.ivColor2.setOnClickListener(this)
+        binding.ivColor3.setOnClickListener(this)
+        binding.ivColor4.setOnClickListener(this)
+        binding.ivColor5.setOnClickListener(this)
     }
 
     override fun onRequestPermissionsResult(
@@ -104,12 +111,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when(view!!.id){
             R.id.iv_color_plate ->{
                 val dialog = AmbilWarnaDialog(this, 255, object:OnAmbilWarnaListener{
-                    override fun onCancel(dialog: AmbilWarnaDialog?) {
-
-                    }
+                    override fun onCancel(dialog: AmbilWarnaDialog?) {}
 
                     override fun onOk(dialog: AmbilWarnaDialog?, color: Int) {
-                        binding.ivColor1.setBackgroundColor(color)
+                        if (count % 2 == 0){
+                            binding.ivColor1.setBackgroundColor(color)
+                        }else{
+                            binding.ivColor2.setBackgroundColor(color)
+                        }
+                        count++
                     }
 
                 })
@@ -135,6 +145,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.iv_exit ->{
+
+            }
+
+            R.id.iv_color1 ->{
+                val colorDrawable = binding.ivColor1.background as ColorDrawable
+                binding.rootLayout.setBackgroundColor(colorDrawable.color)
+            }
+
+            R.id.iv_color2 ->{
+                val colorDrawable = binding.ivColor2.background as ColorDrawable
+                binding.rootLayout.setBackgroundColor(colorDrawable.color)
+            }
+
+            R.id.iv_color3 ->{
+
+            }
+
+            R.id.iv_color4 ->{
+
+            }
+
+            R.id.iv_color5 ->{
 
             }
         }
