@@ -4,28 +4,31 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.provider.Settings.Global.getInt
 import android.provider.Settings.Secure.getInt
 import android.provider.Settings.SettingNotFoundException
 import android.provider.Settings.System.SCREEN_BRIGHTNESS
+import android.provider.Settings.System.putInt
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.TypedArrayUtils.getInt
 import androidx.databinding.DataBindingUtil
 import com.example.aurameditation.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import yuku.ambilwarna.AmbilWarnaDialog
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
-import java.util.jar.Manifest
+
+
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        supportActionBar!!.hide()
 
         MobileAds.initialize(this)
         val adrequest = AdRequest.Builder().build()
@@ -50,29 +54,32 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val contentResolver = contentResolver
         val window = window
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            binding.seekBar.max = 100
-            binding.seekBar.min = 20
-        }
+        binding.seekBar.max = 255
         binding.seekBar.keyProgressIncrement = 1
-        binding.seekBar.progress = 20
 
         try {
-            brightness = Settings.System.getInt(contentResolver, SCREEN_BRIGHTNESS)
-        }catch (e: SettingNotFoundException){
-            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            brightness = System.getInt(cResolver, System.SCREEN_BRIGHTNESS)
+        } catch (e: SettingNotFoundException) {
+            Log.e("Error", "Cannot access system brightness")
+            e.printStackTrace()
         }
-
+        binding.seekBar.progress = brightness
 
         binding.seekBar.setOnSeekBarChangeListener(object: OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                Settings.System.putInt(contentResolver, SCREEN_BRIGHTNESS, progress)
+                if (progress <= 20){
+                    brightness = 20
+                }else{
+                    brightness = progress
+                }
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
+                TODO("Not yet implemented")
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
+
             }
 
         })
@@ -89,6 +96,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.ivColor3.setOnClickListener(this)
         binding.ivColor4.setOnClickListener(this)
         binding.ivColor5.setOnClickListener(this)
+
+        binding.tvFullScreen.setOnClickListener(this)
     }
 
     override fun onRequestPermissionsResult(
