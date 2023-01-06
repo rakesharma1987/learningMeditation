@@ -1,10 +1,13 @@
 package com.example.aurameditation
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.provider.Settings
 import android.provider.Settings.Global.getInt
 import android.provider.Settings.Secure.getInt
 import android.provider.Settings.SettingNotFoundException
@@ -28,13 +31,12 @@ import yuku.ambilwarna.AmbilWarnaDialog
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
 
 
-
-
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
-    private var brightness: Int = 0
+//    private var brightness: Int = 0
     private var count: Int = 1
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -44,45 +46,37 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val adrequest = AdRequest.Builder().build()
         binding.adView.loadAd(adrequest)
 
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_SETTINGS) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_SETTINGS), 101)
-        }else{
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_SETTINGS), 101)
-        }
+        var screenBrightnessValue = 0
+        binding.seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
+                val context = applicationContext
+                val canWriteSettings = Settings.System.canWrite(context)
+                if (canWriteSettings) {
+                    // Because max screen brightness value is 255
+                    // But max seekbar value is 100, so need to convert.
+                    screenBrightnessValue = i * 255 / 100
 
-
-        val contentResolver = contentResolver
-        val window = window
-
-        binding.seekBar.max = 255
-        binding.seekBar.keyProgressIncrement = 1
-
-        try {
-            brightness = System.getInt(cResolver, System.SCREEN_BRIGHTNESS)
-        } catch (e: SettingNotFoundException) {
-            Log.e("Error", "Cannot access system brightness")
-            e.printStackTrace()
-        }
-        binding.seekBar.progress = brightness
-
-        binding.seekBar.setOnSeekBarChangeListener(object: OnSeekBarChangeListener{
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (progress <= 20){
-                    brightness = 20
-                }else{
-                    brightness = progress
+                    // Change the screen brightness change mode to manual.
+                    putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL)
+                    // Apply the screen brightness value to the system, this will change the value in Settings ---> Display ---> Brightness level.
+                    // It will also change the screen brightness for the device.
+                    putInt(context.contentResolver, SCREEN_BRIGHTNESS, screenBrightnessValue)
+                } else {
+                    val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+                    startActivity(intent)
                 }
             }
 
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-                TODO("Not yet implemented")
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                seekBar.progress = screenBrightnessValue
             }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                seekBar.progress = screenBrightnessValue
             }
-
         })
+
+        val currBrightness = Settings.System.getInt(contentResolver, SCREEN_BRIGHTNESS, 0)
+        binding.seekBar.progress = currBrightness
 
         binding.ivColorPlate.setOnClickListener(this)
         binding.ivSongs.setOnClickListener(this)
@@ -179,5 +173,39 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             }
         }
+    }
+
+    // Check whether this app has android write settings permission.
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun hasWriteSettingsPermission(context: Context): Boolean {
+        var ret = true
+        // Get the result from below code.
+        ret = Settings.System.canWrite(context)
+        return ret
+    }
+
+    // Start can modify system settings panel to let user change the write
+    // settings permission.
+    private fun changeWriteSettingsPermission(context: Context) {
+        val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+        context.startActivity(intent)
+    }
+
+    // This function only take effect in real physical android device,
+    // it can not take effect in android emulator.
+    private fun changeScreenBrightness(context: Context, screenBrightnessValue: Int) {
+        // Change the screen brightness change mode to manual.
+        putInt(
+            context.contentResolver,
+            Settings.System.SCREEN_BRIGHTNESS_MODE,
+            Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
+        )
+        // Apply the screen brightness value to the system, this will change
+        // the value in Settings ---> Display ---> Brightness level.
+        // It will also change the screen brightness for the device.
+        putInt(
+            context.contentResolver,
+            Settings.System.SCREEN_BRIGHTNESS, screenBrightnessValue
+        )
     }
 }
