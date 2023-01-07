@@ -11,7 +11,10 @@ import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 
 
-data class Music(val title:String)
+data class Music(
+    var title:String = "",
+    var isPremium: Boolean = false
+)
 
 class Playlist{
     lateinit var name: String

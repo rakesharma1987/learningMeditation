@@ -7,7 +7,9 @@ import android.graphics.drawable.ColorDrawable
 import android.text.SpannableStringBuilder
 import android.text.format.DateUtils
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.text.bold
@@ -27,6 +29,7 @@ class MusicAdapter(private val context: Context, private var musicList: ArrayLis
         val image = binding.imageMV
         val duration = binding.songDuration
         val root = binding.root
+        val lock = binding.ivLock
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
@@ -35,15 +38,17 @@ class MusicAdapter(private val context: Context, private var musicList: ArrayLis
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         holder.title.text = musicList[position].title
-//        holder.album.text = musicList[position].album
-//        holder.duration.text = formatDuration(musicList[position].duration)
-//        Glide.with(context)
-//            .load(musicList[position].artUri)
-//            .apply(RequestOptions().placeholder(R.drawable.ic_music).centerCrop())
-//            .into(holder.image)
-
+        if (musicList[position].isPremium) {
+            holder.lock.visibility = View.GONE
+        }else{
+            holder.lock.visibility = View.VISIBLE
+        }
         holder.root.setOnClickListener {
-            sendIntent(ref = musicList[position].title, pos = position)
+            if (musicList[position].isPremium) {
+                sendIntent(ref = musicList[position].title, pos = position)
+            }else{
+                Toast.makeText(context, "Please unlock premium", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

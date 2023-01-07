@@ -21,9 +21,12 @@ class SongListActivity : AppCompatActivity() {
 
         val assetManager = this.assets
         val stringAray: Array<String> = assetManager.list("mp3") as Array<String>
+        var music = Music()
         musicList = ArrayList<Music>()
         for (title in stringAray){
-            musicList.add(Music(title))
+            music.isPremium = false
+            music.title = title
+            musicList.add(music)
         }
 
         val adapter = MusicAdapter(this, musicList)
