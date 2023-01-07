@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AuraMeditation</string>
     <string name="ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_adunit_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="back_btn">Back</string>
     <string name="world_of_music">Current Music</string>
     <string name="song_name">Song name</string>

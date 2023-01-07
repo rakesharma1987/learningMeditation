@@ -28,9 +28,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.aurameditation.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import yuku.ambilwarna.AmbilWarnaDialog
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -38,6 +43,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //    private var brightness: Int = 0
     private var count: Int = 1
     private var liveDataVisible: MutableLiveData<Boolean> = MutableLiveData(true)
+    var mInterstitialAd: InterstitialAd? = null
+    lateinit var adRequest: AdRequest
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +53,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         supportActionBar!!.hide()
 
         MobileAds.initialize(this)
-        val adrequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adrequest)
+        adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
         var screenBrightnessValue = 0
         binding.seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
@@ -130,20 +137,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
                 })
                 dialog.show()
+                showInterstitialAds()
+
             }
 
             R.id.iv_songs ->{
                 // TODO: code here for premimum
                 startActivity(Intent(this@MainActivity, PremiumActivity::class.java))
+                showInterstitialAds()
             }
 
             R.id.iv_premium ->{
                 // TODO: code here for songs
                 startActivity(Intent(this@MainActivity, SongListActivity::class.java))
+                showInterstitialAds()
             }
 
             R.id.iv_rate ->{
-
+                showInterstitialAds()
             }
 
             R.id.iv_share ->{
@@ -151,37 +162,38 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.iv_exit ->{
-
+                showInterstitialAds()
             }
 
             R.id.iv_color1 ->{
                 val colorDrawable = binding.ivColor1.background as ColorDrawable
                 binding.rootLayout.setBackgroundColor(colorDrawable.color)
+
+                showInterstitialAds()
             }
 
             R.id.iv_color2 ->{
                 val colorDrawable = binding.ivColor2.background as ColorDrawable
                 binding.rootLayout.setBackgroundColor(colorDrawable.color)
+
+                showInterstitialAds()
             }
 
             R.id.iv_color3 ->{
+                showInterstitialAds()
 
             }
 
             R.id.iv_color4 ->{
-
+                showInterstitialAds()
             }
 
             R.id.iv_color5 ->{
-
+                showInterstitialAds()
             }
 
             R.id.root_layout ->{
-                if (binding.seekBar.visibility == View.VISIBLE){
-                        liveDataVisible.value = true
-                    }else{
-                        liveDataVisible.value = false
-                    }
+                liveDataVisible.value = binding.seekBar.visibility == View.VISIBLE
             }
         }
 
@@ -271,5 +283,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             context.contentResolver,
             Settings.System.SCREEN_BRIGHTNESS, screenBrightnessValue
         )
+    }
+
+    fun showInterstitialAds(){
+        InterstitialAd.load(this,getString(R.string.interstitial_adunit_id), adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.d("TAG", adError.toString())
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                Log.d("TAG", "Ad was loaded.")
+                mInterstitialAd = interstitialAd
+                mInterstitialAd!!.show(this@MainActivity)
+            }
+        })
     }
 }
