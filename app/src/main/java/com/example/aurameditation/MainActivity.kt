@@ -24,6 +24,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.TypedArrayUtils.getInt
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.example.aurameditation.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
 //    private var brightness: Int = 0
     private var count: Int = 1
+    private var liveDataVisible: MutableLiveData<Boolean> = MutableLiveData(true)
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,8 +93,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.ivColor3.setOnClickListener(this)
         binding.ivColor4.setOnClickListener(this)
         binding.ivColor5.setOnClickListener(this)
+        binding.rootLayout.setOnClickListener(this)
 
-        binding.tvFullScreen.setOnClickListener(this)
     }
 
     override fun onRequestPermissionsResult(
@@ -172,7 +175,68 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.iv_color5 ->{
 
             }
+
+            R.id.root_layout ->{
+                if (binding.seekBar.visibility == View.VISIBLE){
+                        liveDataVisible.value = true
+                    }else{
+                        liveDataVisible.value = false
+                    }
+            }
         }
+
+        liveDataVisible.observe(this, Observer {
+            if (it){
+                binding.ivColor1.visibility = View.GONE
+                binding.ivColor2.visibility = View.GONE
+                binding.ivColor3.visibility = View.GONE
+                binding.ivColor4.visibility = View.GONE
+                binding.ivColor5.visibility = View.GONE
+
+                binding.ivColorPlate.visibility = View.GONE
+                binding.tvColor.visibility = View.GONE
+                binding.ivSongs.visibility = View.GONE
+                binding.tvSongs.visibility = View.GONE
+                binding.ivPremium.visibility = View.GONE
+                binding.tvPremium.visibility = View.GONE
+                binding.ivRate.visibility = View.GONE
+                binding.tvRate.visibility = View.GONE
+                binding.ivShare.visibility = View.GONE
+                binding.tvShare.visibility = View.GONE
+                binding.ivExit.visibility = View.GONE
+                binding.tvExit.visibility = View.GONE
+
+                binding.seekBar.visibility = View.GONE
+            }else{
+                binding.ivColor1.visibility = View.VISIBLE
+                binding.ivColor2.visibility = View.VISIBLE
+                binding.ivColor3.visibility = View.VISIBLE
+                binding.ivColor4.visibility = View.VISIBLE
+                binding.ivColor5.visibility = View.VISIBLE
+
+                binding.ivColorPlate.visibility = View.VISIBLE
+                binding.tvColor.visibility = View.VISIBLE
+                binding.ivSongs.visibility = View.VISIBLE
+                binding.tvSongs.visibility = View.VISIBLE
+                binding.ivPremium.visibility = View.VISIBLE
+                binding.tvPremium.visibility = View.VISIBLE
+                binding.ivRate.visibility = View.VISIBLE
+                binding.tvRate.visibility = View.VISIBLE
+                binding.ivShare.visibility = View.VISIBLE
+                binding.tvShare.visibility = View.VISIBLE
+                binding.ivExit.visibility = View.VISIBLE
+                binding.tvExit.visibility = View.VISIBLE
+
+                binding.seekBar.visibility = View.VISIBLE
+
+                binding.tvColor.setTextColor(getColor(R.color.white))
+                binding.tvSongs.setTextColor(getColor(R.color.white))
+                binding.tvPremium.setTextColor(getColor(R.color.white))
+                binding.tvRate.setTextColor(getColor(R.color.white))
+                binding.tvShare.setTextColor(getColor(R.color.white))
+                binding.tvExit.setTextColor(getColor(R.color.white))
+            }
+        })
     }
 
     // Check whether this app has android write settings permission.
