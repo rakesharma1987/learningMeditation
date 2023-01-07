@@ -24,7 +24,7 @@ class SongListActivity : AppCompatActivity() {
         var music = Music()
         musicList = ArrayList<Music>()
         for (title in stringAray){
-            music.isPremium = false
+            music.isPremium = GooglePlayBillingPreferences.isPremium()
             music.title = title
             musicList.add(music)
         }
