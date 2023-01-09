@@ -102,6 +102,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.ivColor5.setOnClickListener(this)
         binding.rootLayout.setOnClickListener(this)
 
+        binding.ivImage1.setOnClickListener(this)
+        binding.ivImage2.setOnClickListener(this)
+        binding.ivImage3.setOnClickListener(this)
+        binding.ivImage4.setOnClickListener(this)
+        binding.ivImage5.setOnClickListener(this)
+
+        binding.ivAi1.setOnClickListener(this)
+        binding.ivAi2.setOnClickListener(this)
+        binding.ivAi3.setOnClickListener(this)
+        binding.ivAi4.setOnClickListener(this)
+        binding.ivAi5.setOnClickListener(this)
+
     }
 
     override fun onRequestPermissionsResult(
@@ -195,6 +207,48 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.root_layout ->{
                 liveDataVisible.value = binding.seekBar.visibility == View.VISIBLE
             }
+
+            R.id.iv_image1 ->{
+                binding.rootLayout.background = resources.getDrawable(R.drawable.image_1)
+            }
+
+            R.id.iv_image2 ->{
+                binding.rootLayout.background = resources.getDrawable(R.drawable.image_2)
+            }
+
+            R.id.iv_image3 ->{
+                binding.rootLayout.background = resources.getDrawable(R.drawable.image_3)
+            }
+
+            R.id.iv_image4 ->{
+                binding.rootLayout.background = resources.getDrawable(R.drawable.image_4)
+            }
+
+            R.id.iv_image5 ->{
+                binding.rootLayout.background = resources.getDrawable(R.drawable.image_5)
+            }
+
+            R.id.iv_ai1 ->{
+
+            }
+
+            R.id.iv_ai2 ->{
+
+            }
+
+            R.id.iv_ai3 ->{
+
+            }
+
+            R.id.iv_ai4 ->{
+
+            }
+
+            R.id.iv_ai4 ->{
+
+            }
+
+
         }
 
         liveDataVisible.observe(this, Observer {
@@ -219,6 +273,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 binding.tvExit.visibility = View.GONE
 
                 binding.seekBar.visibility = View.GONE
+
+                binding.ivImage1.visibility = View.GONE
+                binding.ivImage2.visibility = View.GONE
+                binding.ivImage3.visibility = View.GONE
+                binding.ivImage4.visibility = View.GONE
+                binding.ivImage5.visibility = View.GONE
+
+                binding.ivAi1.visibility = View.GONE
+                binding.ivAi2.visibility = View.GONE
+                binding.ivAi3.visibility = View.GONE
+                binding.ivAi4.visibility = View.GONE
+                binding.ivAi5.visibility = View.GONE
             }else{
                 binding.ivColor1.visibility = View.VISIBLE
                 binding.ivColor2.visibility = View.VISIBLE
@@ -247,6 +313,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 binding.tvRate.setTextColor(getColor(R.color.white))
                 binding.tvShare.setTextColor(getColor(R.color.white))
                 binding.tvExit.setTextColor(getColor(R.color.white))
+
+                binding.ivImage1.visibility = View.VISIBLE
+                binding.ivImage2.visibility = View.VISIBLE
+                binding.ivImage3.visibility = View.VISIBLE
+                binding.ivImage4.visibility = View.VISIBLE
+                binding.ivImage5.visibility = View.VISIBLE
+
+                binding.ivAi1.visibility = View.VISIBLE
+                binding.ivAi2.visibility = View.VISIBLE
+                binding.ivAi3.visibility = View.VISIBLE
+                binding.ivAi4.visibility = View.VISIBLE
+                binding.ivAi5.visibility = View.VISIBLE
             }
         })
     }

@@ -19,17 +19,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             ads:adSize="BANNER"
             ads:adUnitId="@string/ad_unit_id"
             ads:layout_constraintEnd_toEndOf="parent"
             ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="10dp"/>
+            ads:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_color_plate"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@color/purple_200"
             android:backgroundTint="@color/purple_200"
@@ -45,17 +45,17 @@
             android:layout_height="wrap_content"
             android:text="Color"
             android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="@+id/iv_color_plate"
-            app:layout_constraintStart_toStartOf="@id/iv_color_plate"
-            app:layout_constraintTop_toBottomOf="@id/iv_color_plate"
             android:textColor="@color/txt_color"
             android:textSize="@dimen/txt_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/iv_color_plate"
+            app:layout_constraintStart_toStartOf="@id/iv_color_plate"
+            app:layout_constraintTop_toBottomOf="@id/iv_color_plate" />
 
         <ImageView
             android:id="@+id/iv_songs"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@color/purple_200"
             android:backgroundTint="@color/purple_200"
@@ -71,17 +71,17 @@
             android:layout_height="wrap_content"
             android:text="Songs"
             android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="@+id/iv_premium"
-            app:layout_constraintStart_toStartOf="@+id/iv_premium"
-            app:layout_constraintTop_toBottomOf="@id/iv_songs"
             android:textColor="@color/txt_color"
             android:textSize="@dimen/txt_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/iv_premium"
+            app:layout_constraintStart_toStartOf="@+id/iv_premium"
+            app:layout_constraintTop_toBottomOf="@id/iv_songs" />
 
         <ImageView
             android:id="@+id/iv_premium"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@color/purple_200"
             android:backgroundTint="@color/purple_200"
@@ -97,17 +97,17 @@
             android:layout_height="wrap_content"
             android:text="Premium"
             android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="@+id/iv_songs"
-            app:layout_constraintStart_toStartOf="@+id/iv_songs"
-            app:layout_constraintTop_toBottomOf="@id/iv_premium"
             android:textColor="@color/txt_color"
             android:textSize="@dimen/txt_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/iv_songs"
+            app:layout_constraintStart_toStartOf="@+id/iv_songs"
+            app:layout_constraintTop_toBottomOf="@id/iv_premium" />
 
         <ImageView
             android:id="@+id/iv_color1"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="20dp"
             android:background="@color/purple_200"
@@ -116,8 +116,8 @@
 
         <ImageView
             android:id="@+id/iv_color2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:background="@color/purple_200"
@@ -126,8 +126,8 @@
 
         <ImageView
             android:id="@+id/iv_color3"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:background="@color/purple_200"
@@ -136,8 +136,8 @@
 
         <ImageView
             android:id="@+id/iv_color4"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:background="@color/purple_200"
@@ -146,35 +146,141 @@
 
         <ImageView
             android:id="@+id/iv_color5"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
             android:background="@color/purple_200"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_color4"
-            android:layout_marginBottom="20dp"/>
+            app:layout_constraintTop_toBottomOf="@id/iv_color4" />
+
+        <ImageView
+            android:id="@+id/iv_image1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/image_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_premium" />
+
+        <ImageView
+            android:id="@+id/iv_image2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/image_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_image1" />
+
+        <ImageView
+            android:id="@+id/iv_image3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/image_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_image2" />
+
+        <ImageView
+            android:id="@+id/iv_image4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/image_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_image3" />
+
+        <ImageView
+            android:id="@+id/iv_image5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/image_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_image4" />
+
+        <ImageView
+            android:id="@+id/iv_ai1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/image_5"
+            app:layout_constraintEnd_toStartOf="@+id/iv_ai2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
+
+        <ImageView
+            android:id="@+id/iv_ai2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/image_5"
+            app:layout_constraintEnd_toStartOf="@+id/iv_ai3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_ai1"
+            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
+
+        <ImageView
+            android:id="@+id/iv_ai3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/image_5"
+            app:layout_constraintEnd_toStartOf="@+id/iv_ai4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_ai2"
+            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
+
+        <ImageView
+            android:id="@+id/iv_ai4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/image_5"
+            app:layout_constraintEnd_toStartOf="@+id/iv_ai5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_ai3"
+            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
+
+        <ImageView
+            android:id="@+id/iv_ai5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/image_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_ai4"
+            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
 
         <SeekBar
             android:id="@+id/seekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/iv_color5"
             android:layout_marginTop="20dp"
-            android:progress="50"/>
+            android:layout_marginBottom="30dp"
+            android:progress="50"
+            app:layout_constraintBottom_toTopOf="@id/iv_rate" />
 
         <ImageView
             android:id="@+id/iv_rate"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:background="@color/purple_200"
             android:backgroundTint="@color/purple_200"
             android:src="@drawable/ic_rate"
+            app:layout_constraintBottom_toTopOf="@id/tv_rate"
             app:layout_constraintEnd_toStartOf="@+id/iv_exit"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_rate" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_rate"
@@ -182,25 +288,25 @@
             android:layout_height="wrap_content"
             android:text="Rate"
             android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="@+id/iv_rate"
-            app:layout_constraintStart_toStartOf="@id/iv_rate"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/txt_color"
             android:textSize="@dimen/txt_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_rate"
+            app:layout_constraintStart_toStartOf="@id/iv_rate" />
 
         <ImageView
             android:id="@+id/iv_share"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:background="@color/purple_200"
             android:backgroundTint="@color/purple_200"
             android:src="@drawable/ic_exit"
+            app:layout_constraintBottom_toTopOf="@id/tv_share"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_exit"
-            app:layout_constraintBottom_toTopOf="@id/tv_share" />
+            app:layout_constraintStart_toEndOf="@+id/iv_exit" />
 
         <TextView
             android:id="@+id/tv_share"
@@ -208,26 +314,25 @@
             android:layout_height="wrap_content"
             android:text="Share"
             android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/iv_exit"
-            app:layout_constraintStart_toStartOf="@+id/iv_exit"
             android:textColor="@color/txt_color"
             android:textSize="@dimen/txt_size"
             android:textStyle="bold"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_exit"
+            app:layout_constraintStart_toStartOf="@+id/iv_exit" />
 
         <ImageView
             android:id="@+id/iv_exit"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:background="@color/purple_200"
             android:backgroundTint="@color/purple_200"
             android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toTopOf="@id/tv_exit"
             app:layout_constraintEnd_toStartOf="@+id/iv_songs"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_color_plate"
-            app:layout_constraintBottom_toTopOf="@id/tv_exit" />
+            app:layout_constraintStart_toEndOf="@+id/iv_color_plate" />
 
         <TextView
             android:id="@+id/tv_exit"
@@ -235,12 +340,12 @@
             android:layout_height="wrap_content"
             android:text="Exit"
             android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/iv_share"
-            app:layout_constraintStart_toStartOf="@+id/iv_share"
             android:textColor="@color/txt_color"
             android:textSize="@dimen/txt_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_share"
+            app:layout_constraintStart_toStartOf="@+id/iv_share" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
