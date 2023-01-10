@@ -266,7 +266,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
-            android:progress="50"
+            android:progress="10"
             app:layout_constraintBottom_toTopOf="@id/iv_rate" />
 
         <ImageView
@@ -346,6 +346,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/iv_share"
             app:layout_constraintStart_toStartOf="@+id/iv_share" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_root"
+            android:visibility="gone"
+            android:background="@android:color/transparent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

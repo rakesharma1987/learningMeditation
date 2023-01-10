@@ -1,9 +1,11 @@
 package com.example.aurameditation
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -16,6 +18,7 @@ import android.provider.Settings.System.putInt
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.annotation.RequiresApi
@@ -26,6 +29,7 @@ import androidx.core.content.res.TypedArrayUtils.getInt
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.example.aurameditation.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -33,6 +37,7 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.play.core.review.ReviewManagerFactory
 import yuku.ambilwarna.AmbilWarnaDialog
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
 import java.util.*
@@ -114,6 +119,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.ivAi4.setOnClickListener(this)
         binding.ivAi5.setOnClickListener(this)
 
+//        Glide.with(this).load("https://media.giphy.com/media/SKGo6OYe24EBG/giphy.gif").into(binding.ivAi1)
+        Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivAi1)
+        Glide.with(this).load(R.drawable.ic_ai2).into(binding.ivAi2)
+        Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivAi3)
+        Glide.with(this).load(R.drawable.ic_ai2).into(binding.ivAi4)
+        Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivAi5)
+
     }
 
     override fun onRequestPermissionsResult(
@@ -167,6 +179,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.iv_rate ->{
                 showInterstitialAds()
+                openAppInPlayStore()
             }
 
             R.id.iv_share ->{
@@ -174,6 +187,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.iv_exit ->{
+                val intent= Intent()
+                intent.action=Intent.ACTION_SEND
+                intent.putExtra(Intent.EXTRA_TEXT,"Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)
+                intent.type="text/plain"
+                startActivity(Intent.createChooser(intent,"Share To:"))
                 showInterstitialAds()
             }
 
@@ -229,23 +247,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.iv_ai1 ->{
-
+                binding.ivRoot.visibility = View.VISIBLE
+                Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivRoot)
             }
 
             R.id.iv_ai2 ->{
-
+                Glide.with(this).load(R.drawable.ic_ai2).into(binding.ivRoot)
             }
 
             R.id.iv_ai3 ->{
-
+                Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivRoot)
             }
 
             R.id.iv_ai4 ->{
-
+                Glide.with(this).load(R.drawable.ic_ai2).into(binding.ivRoot)
             }
 
-            R.id.iv_ai4 ->{
-
+            R.id.iv_ai5 ->{
+                Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivRoot)
             }
 
 
@@ -285,6 +304,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 binding.ivAi3.visibility = View.GONE
                 binding.ivAi4.visibility = View.GONE
                 binding.ivAi5.visibility = View.GONE
+
+                binding.ivRoot.visibility = View.GONE
             }else{
                 binding.ivColor1.visibility = View.VISIBLE
                 binding.ivColor2.visibility = View.VISIBLE
@@ -377,4 +398,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
     }
+
+    fun openAppInPlayStore() {
+        val uri = Uri.parse("market://details?id=" + applicationContext.packageName)
+        val goToMarketIntent = Intent(Intent.ACTION_VIEW, uri)
+
+        var flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        flags = if (Build.VERSION.SDK_INT >= 21) {
+            flags or Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+        } else {
+            flags or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        goToMarketIntent.addFlags(flags)
+
+        try {
+            startActivity(goToMarketIntent)
+        } catch (e: ActivityNotFoundException) {
+            val intent = Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://play.google.com/store/apps/details?id=" + applicationContext.packageName))
+
+            startActivity(intent)
+        }
+    }
+
 }
