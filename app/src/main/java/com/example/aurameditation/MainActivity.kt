@@ -8,24 +8,15 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.provider.Settings
-import android.provider.Settings.Global.getInt
-import android.provider.Settings.Secure.getInt
-import android.provider.Settings.SettingNotFoundException
 import android.provider.Settings.System.SCREEN_BRIGHTNESS
 import android.provider.Settings.System.putInt
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
-import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.TypedArrayUtils.getInt
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -34,10 +25,8 @@ import com.example.aurameditation.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.google.android.play.core.review.ReviewManagerFactory
 import yuku.ambilwarna.AmbilWarnaDialog
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
 import java.util.*
@@ -45,7 +34,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
-//    private var brightness: Int = 0
     private var count: Int = 1
     private var liveDataVisible: MutableLiveData<Boolean> = MutableLiveData(true)
     var mInterstitialAd: InterstitialAd? = null
@@ -348,40 +336,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 binding.ivAi5.visibility = View.VISIBLE
             }
         })
-    }
-
-    // Check whether this app has android write settings permission.
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun hasWriteSettingsPermission(context: Context): Boolean {
-        var ret = true
-        // Get the result from below code.
-        ret = Settings.System.canWrite(context)
-        return ret
-    }
-
-    // Start can modify system settings panel to let user change the write
-    // settings permission.
-    private fun changeWriteSettingsPermission(context: Context) {
-        val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
-        context.startActivity(intent)
-    }
-
-    // This function only take effect in real physical android device,
-    // it can not take effect in android emulator.
-    private fun changeScreenBrightness(context: Context, screenBrightnessValue: Int) {
-        // Change the screen brightness change mode to manual.
-        putInt(
-            context.contentResolver,
-            Settings.System.SCREEN_BRIGHTNESS_MODE,
-            Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
-        )
-        // Apply the screen brightness value to the system, this will change
-        // the value in Settings ---> Display ---> Brightness level.
-        // It will also change the screen brightness for the device.
-        putInt(
-            context.contentResolver,
-            Settings.System.SCREEN_BRIGHTNESS, screenBrightnessValue
-        )
     }
 
     fun showInterstitialAds(){
