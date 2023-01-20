@@ -28,10 +28,10 @@
 
         <ImageView
             android:id="@+id/iv_color_plate"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:background="@color/purple_200"
+            android:background="@drawable/drawable_view_background"
             android:backgroundTint="@color/purple_200"
             android:src="@drawable/ic_color_plate"
             app:layout_constraintEnd_toStartOf="@+id/iv_premium"
@@ -54,10 +54,10 @@
 
         <ImageView
             android:id="@+id/iv_songs"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:background="@color/purple_200"
+            android:background="@drawable/drawable_view_background"
             android:backgroundTint="@color/purple_200"
             android:src="@drawable/ic_premium"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,10 +80,10 @@
 
         <ImageView
             android:id="@+id/iv_premium"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:background="@color/purple_200"
+            android:background="@drawable/drawable_view_background"
             android:backgroundTint="@color/purple_200"
             android:src="@drawable/ic_music"
             app:layout_constraintEnd_toStartOf="@+id/iv_songs"
@@ -104,177 +104,315 @@
             app:layout_constraintStart_toStartOf="@+id/iv_songs"
             app:layout_constraintTop_toBottomOf="@id/iv_premium" />
 
-        <ImageView
-            android:id="@+id/iv_color1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/purple_200"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/rl_iv_color1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="7dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_color" />
+            app:layout_constraintTop_toBottomOf="@id/tv_color"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            >
 
+            <ImageView
+                android:id="@+id/iv_color1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@color/purple_200"
+                android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/rl_iv_color2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rl_iv_color1">
         <ImageView
             android:id="@+id/iv_color2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/purple_200"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_color1" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/purple_200" />
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/rl_iv_color3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rl_iv_color2">
         <ImageView
             android:id="@+id/iv_color3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/purple_200"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_color2" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/purple_200" />
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/rl_iv_color4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rl_iv_color3"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
         <ImageView
             android:id="@+id/iv_color4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/purple_200"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_color3" />
+             />
+        </com.google.android.material.card.MaterialCardView>
 
-        <ImageView
-            android:id="@+id/iv_color5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/rl_iv_color5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="20dp"
-            android:background="@color/purple_200"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_color4" />
+            app:layout_constraintTop_toBottomOf="@id/rl_iv_color4"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            >
+        <ImageView
+            android:id="@+id/iv_color5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/purple_200" />
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/cv_image1"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_premium">
         <ImageView
             android:id="@+id/iv_image1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/image_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_premium" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_1"
+            android:background="@drawable/drawable_view_background_verticle"
+            android:scaleType="centerCrop"/>
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/cv_image2"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_image1">
         <ImageView
             android:id="@+id/iv_image2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/image_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_image1" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_2"
+            android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/cv_image3"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_image2">
         <ImageView
             android:id="@+id/iv_image3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/image_3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_image2" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_3"
+            android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/cv_image4"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_image3">
         <ImageView
             android:id="@+id/iv_image4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/image_4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_image3" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_4"
+            />
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/cv_image5"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_image4">
         <ImageView
             android:id="@+id/iv_image5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/image_5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_image4" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_5" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <ImageView
-            android:id="@+id/iv_ai1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/image_5"
-            app:layout_constraintEnd_toStartOf="@+id/iv_ai2"
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/cv_aiv1"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/cv_aiv2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
-
+            app:layout_constraintTop_toBottomOf="@id/rl_iv_color5">
+        <ImageView
+            android:id="@+id/iv_ai1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_5"
+            android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/cv_aiv2"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/cv_aiv3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cv_aiv1"
+            app:layout_constraintTop_toBottomOf="@id/rl_iv_color5">
         <ImageView
             android:id="@+id/iv_ai2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/image_5"
-            app:layout_constraintEnd_toStartOf="@+id/iv_ai3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_ai1"
-            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_5"
+            android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/cv_aiv3"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/cv_aiv4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cv_aiv2"
+            app:layout_constraintTop_toBottomOf="@id/rl_iv_color5">
         <ImageView
             android:id="@+id/iv_ai3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/image_5"
-            app:layout_constraintEnd_toStartOf="@+id/iv_ai4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_ai2"
-            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_5"
+            android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/cv_aiv4"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/cv_aiv5"
+            app:layout_constraintStart_toEndOf="@+id/cv_aiv3"
+            app:layout_constraintTop_toBottomOf="@id/rl_iv_color5">
         <ImageView
             android:id="@+id/iv_ai4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/image_5"
-            app:layout_constraintEnd_toStartOf="@+id/iv_ai5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_ai3"
-            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_5"
+            android:background="@drawable/drawable_view_background"
+            android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <ImageView
-            android:id="@+id/iv_ai5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/image_5"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_aiv5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/iv_ai4"
-            app:layout_constraintTop_toBottomOf="@id/iv_color5" />
+            app:layout_constraintStart_toEndOf="@+id/cv_aiv4"
+            app:layout_constraintTop_toBottomOf="@id/rl_iv_color5">
+
+            <ImageView
+                android:id="@+id/iv_ai5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_5" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_seekbar_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/seekBar"
+            android:textSize="@dimen/txt_size"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:text="asdhasdf"/>
 
         <SeekBar
             android:id="@+id/seekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:progress="10"
-            app:layout_constraintBottom_toTopOf="@id/iv_rate" />
+            android:progress="1"
+            android:progressDrawable="@drawable/seek_bar"
+            android:thumb="@drawable/seek_thumb"
+            app:layout_constraintBottom_toTopOf="@id/iv_rate"
+            app:layout_constraintEnd_toEndOf="@+id/cv_aiv5"
+            app:layout_constraintStart_toStartOf="@+id/cv_aiv1"
+            app:layout_constraintTop_toBottomOf="@+id/cv_aiv3" />
 
         <ImageView
             android:id="@+id/iv_rate"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/purple_200"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/drawable_view_background"
             android:backgroundTint="@color/purple_200"
             android:src="@drawable/ic_rate"
             app:layout_constraintBottom_toTopOf="@id/tv_rate"
@@ -293,14 +431,14 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/iv_rate"
-            app:layout_constraintStart_toStartOf="@id/iv_rate" />
+            app:layout_constraintStart_toStartOf="@id/iv_rate"
+            android:layout_marginBottom="5dp"/>
 
         <ImageView
             android:id="@+id/iv_share"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/purple_200"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/drawable_view_background"
             android:backgroundTint="@color/purple_200"
             android:src="@drawable/ic_exit"
             app:layout_constraintBottom_toTopOf="@id/tv_share"
@@ -319,14 +457,14 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/iv_exit"
-            app:layout_constraintStart_toStartOf="@+id/iv_exit" />
+            app:layout_constraintStart_toStartOf="@+id/iv_exit"
+            android:layout_marginBottom="5dp"/>
 
         <ImageView
             android:id="@+id/iv_exit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/purple_200"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/drawable_view_background"
             android:backgroundTint="@color/purple_200"
             android:src="@drawable/ic_share"
             app:layout_constraintBottom_toTopOf="@id/tv_exit"
@@ -345,13 +483,15 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/iv_share"
-            app:layout_constraintStart_toStartOf="@+id/iv_share" />
+            app:layout_constraintStart_toStartOf="@+id/iv_share"
+            android:layout_marginBottom="5dp"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/iv_root"
             android:visibility="gone"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

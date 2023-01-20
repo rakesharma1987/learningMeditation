@@ -1,9 +1,13 @@
 package com.example.aurameditation
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
@@ -13,6 +17,7 @@ import android.provider.Settings.System.SCREEN_BRIGHTNESS
 import android.provider.Settings.System.putInt
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.annotation.RequiresApi
@@ -49,37 +54,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
 
-        var screenBrightnessValue = 0
+        binding.seekBar.progress = 1
         binding.seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                val context = applicationContext
-                val canWriteSettings = Settings.System.canWrite(context)
-                if (canWriteSettings) {
-                    // Because max screen brightness value is 255
-                    // But max seekbar value is 100, so need to convert.
-                    screenBrightnessValue = i * 255 / 100
+            @SuppressLint("SetTextI18n")
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                binding.tvSeekbarValue.visibility = View.VISIBLE
+                val backLightValue = p1 / 100.0f as Float
+                val lay: WindowManager.LayoutParams = window.attributes
+                lay.screenBrightness = backLightValue
+                window.attributes = lay
+                val value = "%.0f".format(backLightValue * 100)
+                binding.tvSeekbarValue.text = "$value %"
 
-                    // Change the screen brightness change mode to manual.
-                    putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL)
-                    // Apply the screen brightness value to the system, this will change the value in Settings ---> Display ---> Brightness level.
-                    // It will also change the screen brightness for the device.
-                    putInt(context.contentResolver, SCREEN_BRIGHTNESS, screenBrightnessValue)
-                } else {
-                    val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
-                    startActivity(intent)
-                }
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar) {
-                seekBar.progress = screenBrightnessValue
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+//                TODO("Not yet implemented")
             }
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-                seekBar.progress = screenBrightnessValue
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+//                TODO("Not yet implemented")
+                binding.tvSeekbarValue.visibility = View.GONE
             }
+
         })
-
-        val currBrightness = Settings.System.getInt(contentResolver, SCREEN_BRIGHTNESS, 0)
-        binding.seekBar.progress = currBrightness
 
         binding.ivColorPlate.setOnClickListener(this)
         binding.ivSongs.setOnClickListener(this)
@@ -122,9 +120,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode){
+        when (requestCode) {
             101 -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 }
             }
@@ -133,15 +131,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onClick(view: View?) {
-        when(view!!.id){
-            R.id.iv_color_plate ->{
-                val dialog = AmbilWarnaDialog(this, 255, object:OnAmbilWarnaListener{
+        when (view!!.id) {
+            R.id.iv_color_plate -> {
+                val dialog = AmbilWarnaDialog(this, 255, object : OnAmbilWarnaListener {
                     override fun onCancel(dialog: AmbilWarnaDialog?) {}
 
                     override fun onOk(dialog: AmbilWarnaDialog?, color: Int) {
-                        if (count % 2 == 0){
+                        if (count % 2 == 0) {
                             binding.ivColor1.setBackgroundColor(color)
-                        }else{
+                        } else {
                             binding.ivColor2.setBackgroundColor(color)
                         }
                         count++
@@ -153,105 +151,108 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             }
 
-            R.id.iv_songs ->{
+            R.id.iv_songs -> {
                 // TODO: code here for premimum
                 startActivity(Intent(this@MainActivity, PremiumActivity::class.java))
                 showInterstitialAds()
             }
 
-            R.id.iv_premium ->{
+            R.id.iv_premium -> {
                 // TODO: code here for songs
                 startActivity(Intent(this@MainActivity, SongListActivity::class.java))
                 showInterstitialAds()
             }
 
-            R.id.iv_rate ->{
+            R.id.iv_rate -> {
                 showInterstitialAds()
                 openAppInPlayStore()
             }
 
-            R.id.iv_share ->{
+            R.id.iv_share -> {
                 this.finish()
             }
 
-            R.id.iv_exit ->{
-                val intent= Intent()
-                intent.action=Intent.ACTION_SEND
-                intent.putExtra(Intent.EXTRA_TEXT,"Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)
-                intent.type="text/plain"
-                startActivity(Intent.createChooser(intent,"Share To:"))
+            R.id.iv_exit -> {
+                val intent = Intent()
+                intent.action = Intent.ACTION_SEND
+                intent.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID
+                )
+                intent.type = "text/plain"
+                startActivity(Intent.createChooser(intent, "Share To:"))
                 showInterstitialAds()
             }
 
-            R.id.iv_color1 ->{
+            R.id.iv_color1 -> {
                 val colorDrawable = binding.ivColor1.background as ColorDrawable
                 binding.rootLayout.setBackgroundColor(colorDrawable.color)
 
                 showInterstitialAds()
             }
 
-            R.id.iv_color2 ->{
+            R.id.iv_color2 -> {
                 val colorDrawable = binding.ivColor2.background as ColorDrawable
                 binding.rootLayout.setBackgroundColor(colorDrawable.color)
 
                 showInterstitialAds()
             }
 
-            R.id.iv_color3 ->{
+            R.id.iv_color3 -> {
                 showInterstitialAds()
 
             }
 
-            R.id.iv_color4 ->{
+            R.id.iv_color4 -> {
                 showInterstitialAds()
             }
 
-            R.id.iv_color5 ->{
+            R.id.iv_color5 -> {
                 showInterstitialAds()
             }
 
-            R.id.root_layout ->{
+            R.id.root_layout -> {
                 liveDataVisible.value = binding.seekBar.visibility == View.VISIBLE
             }
 
-            R.id.iv_image1 ->{
+            R.id.iv_image1 -> {
                 binding.rootLayout.background = resources.getDrawable(R.drawable.image_1)
             }
 
-            R.id.iv_image2 ->{
+            R.id.iv_image2 -> {
                 binding.rootLayout.background = resources.getDrawable(R.drawable.image_2)
             }
 
-            R.id.iv_image3 ->{
+            R.id.iv_image3 -> {
                 binding.rootLayout.background = resources.getDrawable(R.drawable.image_3)
             }
 
-            R.id.iv_image4 ->{
+            R.id.iv_image4 -> {
                 binding.rootLayout.background = resources.getDrawable(R.drawable.image_4)
             }
 
-            R.id.iv_image5 ->{
+            R.id.iv_image5 -> {
                 binding.rootLayout.background = resources.getDrawable(R.drawable.image_5)
             }
 
-            R.id.iv_ai1 ->{
+            R.id.iv_ai1 -> {
                 binding.ivRoot.visibility = View.VISIBLE
-                Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivRoot)
-            }
-
-            R.id.iv_ai2 ->{
                 Glide.with(this).load(R.drawable.ic_ai2).into(binding.ivRoot)
             }
 
-            R.id.iv_ai3 ->{
-                Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivRoot)
-            }
-
-            R.id.iv_ai4 ->{
+            R.id.iv_ai2 -> {
                 Glide.with(this).load(R.drawable.ic_ai2).into(binding.ivRoot)
             }
 
-            R.id.iv_ai5 ->{
+            R.id.iv_ai3 -> {
+                Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivRoot)
+            }
+
+            R.id.iv_ai4 -> {
+                Glide.with(this).load(R.drawable.ic_ai2).into(binding.ivRoot)
+            }
+
+            R.id.iv_ai5 -> {
                 Glide.with(this).load(R.drawable.ic_ai1).into(binding.ivRoot)
             }
 
@@ -259,7 +260,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         liveDataVisible.observe(this, Observer {
-            if (it){
+            if (it) {
                 binding.ivColor1.visibility = View.GONE
                 binding.ivColor2.visibility = View.GONE
                 binding.ivColor3.visibility = View.GONE
@@ -293,8 +294,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 binding.ivAi4.visibility = View.GONE
                 binding.ivAi5.visibility = View.GONE
 
+                binding.rlIvColor1.visibility = View.GONE
+                binding.rlIvColor2.visibility = View.GONE
+                binding.rlIvColor3.visibility = View.GONE
+                binding.rlIvColor4.visibility = View.GONE
+                binding.rlIvColor5.visibility = View.GONE
+
+                binding.cvAiv1.visibility = View.GONE
+                binding.cvAiv2.visibility = View.GONE
+                binding.cvAiv3.visibility = View.GONE
+                binding.cvAiv4.visibility = View.GONE
+                binding.cvAiv5.visibility = View.GONE
+
+                binding.cvImage1.visibility = View.GONE
+                binding.cvImage2.visibility = View.GONE
+                binding.cvImage3.visibility = View.GONE
+                binding.cvImage4.visibility = View.GONE
+                binding.cvImage5.visibility = View.GONE
+
+
                 binding.ivRoot.visibility = View.GONE
-            }else{
+
+            } else {
                 binding.ivColor1.visibility = View.VISIBLE
                 binding.ivColor2.visibility = View.VISIBLE
                 binding.ivColor3.visibility = View.VISIBLE
@@ -334,26 +355,48 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 binding.ivAi3.visibility = View.VISIBLE
                 binding.ivAi4.visibility = View.VISIBLE
                 binding.ivAi5.visibility = View.VISIBLE
+
+                binding.rlIvColor1.visibility = View.VISIBLE
+                binding.rlIvColor2.visibility = View.VISIBLE
+                binding.rlIvColor3.visibility = View.VISIBLE
+                binding.rlIvColor4.visibility = View.VISIBLE
+                binding.rlIvColor5.visibility = View.VISIBLE
+
+                binding.cvAiv1.visibility = View.VISIBLE
+                binding.cvAiv2.visibility = View.VISIBLE
+                binding.cvAiv3.visibility = View.VISIBLE
+                binding.cvAiv4.visibility = View.VISIBLE
+                binding.cvAiv5.visibility = View.VISIBLE
+
+                binding.cvImage1.visibility = View.VISIBLE
+                binding.cvImage2.visibility = View.VISIBLE
+                binding.cvImage3.visibility = View.VISIBLE
+                binding.cvImage4.visibility = View.VISIBLE
+                binding.cvImage5.visibility = View.VISIBLE
             }
         })
     }
 
-    fun showInterstitialAds(){
-        InterstitialAd.load(this,getString(R.string.interstitial_adunit_id), adRequest, object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.d("TAG", adError.toString())
-                mInterstitialAd = null
-            }
+    private fun showInterstitialAds() {
+        InterstitialAd.load(
+            this,
+            getString(R.string.interstitial_adunit_id),
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d("TAG", adError.toString())
+                    mInterstitialAd = null
+                }
 
-            override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                Log.d("TAG", "Ad was loaded.")
-                mInterstitialAd = interstitialAd
-                mInterstitialAd!!.show(this@MainActivity)
-            }
-        })
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.d("TAG", "Ad was loaded.")
+                    mInterstitialAd = interstitialAd
+                    mInterstitialAd!!.show(this@MainActivity)
+                }
+            })
     }
 
-    fun openAppInPlayStore() {
+    private fun openAppInPlayStore() {
         val uri = Uri.parse("market://details?id=" + applicationContext.packageName)
         val goToMarketIntent = Intent(Intent.ACTION_VIEW, uri)
 
@@ -368,11 +411,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         try {
             startActivity(goToMarketIntent)
         } catch (e: ActivityNotFoundException) {
-            val intent = Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://play.google.com/store/apps/details?id=" + applicationContext.packageName))
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://play.google.com/store/apps/details?id=" + applicationContext.packageName)
+            )
 
             startActivity(intent)
         }
     }
-
 }
