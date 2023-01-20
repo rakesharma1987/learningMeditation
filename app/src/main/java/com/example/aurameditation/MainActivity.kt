@@ -164,7 +164,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.iv_rate -> {
-                showInterstitialAds()
                 openAppInPlayStore()
             }
 

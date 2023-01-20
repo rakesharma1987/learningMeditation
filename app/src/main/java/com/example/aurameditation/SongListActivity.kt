@@ -21,11 +21,16 @@ class SongListActivity : AppCompatActivity() {
 
         val assetManager = this.assets
         val stringAray: Array<String> = assetManager.list("mp3") as Array<String>
-        var music = Music()
         musicList = ArrayList<Music>()
         for (title in stringAray){
-//            music.isPremium = GooglePlayBillingPreferences.isPremium()
-            music.isPremium = true
+            var music = Music()
+            if(!GooglePlayBillingPreferences.isPremium()){
+                if (musicList.size <= 1){
+                    music.isPremium = true
+                }
+            }else {
+                music.isPremium = GooglePlayBillingPreferences.isPremium()
+            }
             music.title = title
             musicList.add(music)
         }

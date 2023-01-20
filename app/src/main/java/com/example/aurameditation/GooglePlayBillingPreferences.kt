@@ -11,9 +11,9 @@ object GooglePlayBillingPreferences {
     private const val IS_ADDREMOVE = "addremove"
 
     fun init(context: Context){
-        prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        editor = prefs.edit()
-        editor.commit()
+            prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            editor = prefs.edit()
+            editor.commit()
     }
 
     fun savePremiumToPref(b : Boolean){
