@@ -180,7 +180,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 )
                 intent.type = "text/plain"
                 startActivity(Intent.createChooser(intent, "Share To:"))
-                showInterstitialAds()
             }
 
             R.id.iv_color1 -> {
